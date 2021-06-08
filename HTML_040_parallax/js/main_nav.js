@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // nav와 selection을 별도의 변수로 만들기
   const nav = document.querySelector("nav#main_nav");
+  const dot = document.querySelector("nav#dot_nav");
   // nav라는 이름의 변수 만듦. const = 상수. 한번만 선언할 수 있음.
-  const conts = document.querySelector("section#contents");
+  // const conts = document.querySelector("section#contents");
 
   // 이벤트 핸들러 함수 선언
   const navClick = (e) => {
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   // nav에 click event 설정
   nav.addEventListener("click", navClick);
+  dot.addEventListener("click", navClick);
 
   /*
   scroll event는 화면이 스크롤 되는 동안에 엄청나게 많은 event를 발생한다
@@ -81,10 +83,28 @@ document.addEventListener("DOMContentLoaded", () => {
       // active 클래스를 지정
       li.classList.add("active");
 
+      let dot_active = dot.querySelectorAll("ul li.active");
+      // 원래 있던 active들을 가져와서
+      for (let i = 0; i < dot_active.length; i++) {
+        dot_active[i].classList.remove("active");
+      }
+
+      let dot_li = dot.querySelector("ul li." + art.id);
+      dot_li.classList.add("active");
+
+      ticking = false;
+
       ticking = false;
     }
   };
 
   // 현재 보고 있는 화면이 스크롤되면
   document.addEventListener("scroll", scrollTop_nav_tick);
+
+  // 햄버거 버튼이 클릭되면
+  document
+    .querySelector("nav#main_nav .fa-bars")
+    .addEventListener("click", (e) => {
+      document.querySelector("nav#main_nav ul").classList.toggle("drop");
+    });
 });
