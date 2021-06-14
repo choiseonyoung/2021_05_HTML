@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>image slide</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      /* 이 페이지에서 사용할 애니메이션을 선언 */
+      /* 왼쪽 방향으로 5px 만큼씩 이동하는 애니메이션 */
+      @keyframes myslide { /* 변수 이름이기 때문에 겹치면(2개 이상이면) 안 됨 */
+          /* 키프레임 시작점 */
+          0% {
+            transform: translateY(0); /* 현재 모양에서 (0 : 움직이지 마라) */
+          }
+          /* 키프레임 종료점 */
+          100% {
+            transform: translateY(calc(-500px * 5 )) /* 왼쪽 방향으로 tag를 이동하라 (2500px만큼) */
+          }
+      }
+      div.main {
+        width: 500px;
+        height: 500px;
+        border: 1px solid green;
+        margin: 20px auto;
+      }
+
+      div.main div.mask {
+        border: 1px solid blue;
+        height: 500px;
+        /*
+        감싸고 있는 이미지들이 화면에서 넘치는 현상이 발생했는데
+        이 box 만큼만 보여주고 나머지는 모두 보이지 않도록 하라
+        */
+        overflow: hidden;
+      }
+
+      div.main div.images {
+        width: 500px;
+        border: 1px solid red;
+
+        animation: myslide 10s linear infinite;
+        /* 10초동안 직선방향으로 움직여라. 영원히 반복해라 */
+      }
+
+      div.main div.images img {
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="mask">
+        <div class="images">
+            <img src="images_1.jpg" />
+            <img src="images_2.jpg" />
+            <img src="images_3.jpg" />
+            <img src="images_4.jpg" />
+            <img src="images_5.jpg" />
+
+            <img src="images_1.jpg" />
+            <img src="images_2.jpg" />
+            <img src="images_3.jpg" />
+            <img src="images_4.jpg" />
+            <img src="images_5.jpg" />
+            <!-- 이미지 슬라이드할 땐 카피본도 하나 더. 인피니트했을 때 화면 끊기지 않고 계속 보여줄 수 있음 -->
+      </div>
+    </div>
+  </body>
+</html>
